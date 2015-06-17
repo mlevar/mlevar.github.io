@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Lato Regular"), local("Lato-Regular"), url("http://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2") format("woff2"), url("http://fonts.gstatic.com/s/lato/v11/9k-RPmcnxYEPm8CNFsH2gg.woff") format("woff");
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    font-family: sans-serif;
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    font-size: 4em;
+    margin: 5px;
+}
+
+.fa {
+    padding: 5px;
+}
+
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.title {}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100vh;
+    background: rgb(19, 22, 19);
+    text-align: center;
+    width: 100vw;
+    min-width: 100%;
+}
+
+header,
+footer {
+    height: 6%;
+    flex: none;
+    background: rgb(23, 26, 23);
+    color: #30332d;
+}
+
+header {
+    height: 10%;
+}
+
+.copyright {
+    margin-top: .2em;
+    font-size: 1.3em;
+}
+
+footer a,
+footer a:hover,
+footer a:visited,
+footer a:link,
+footer a:active {
+    color: #30332d;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+main {
+    margin: 1em;
+    display: flex;
+    flex: 1 0;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+nav {
+    order: -1;
+}
+
+nav,
+aside {
+    display: flex;
+    flex: 0 0 20vw;
+    margin: 1em;
+    /*            border-radius: 5px;*/
+    /*            background: rgba(216, 119, 18, 0.62);*/
+}
+
+.content {
+    margin-top: 5%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        flex: 1;
+    }
+    main {
+        flex: 1;
+    }
+    nav,
+    aside {
+        flex: 0 0 5em;
+    }
+}
+
+@media (min-height: 550px) {
+    .copyright {
+        margin-top: 1em;
+    }
+}
