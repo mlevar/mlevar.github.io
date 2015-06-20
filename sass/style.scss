@@ -1,0 +1,165 @@
+$main-background: #131613;
+$off-background: #171a17;
+$text-color: #eefff4;
+$text-off-color: #30332e;
+
+$hover-color: #ffffff;
+$link-list: "#linkedin" "#github" "#bitbucket" "#blog" "#contact";
+
+$debug: false;
+@if $debug{
+    $debug-color : #3aa830;
+}
+
+@font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Lato Regular"), local("Lato-Regular"), url("http://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2") format("woff2"), url("http://fonts.gstatic.com/s/lato/v11/9k-RPmcnxYEPm8CNFsH2gg.woff") format("woff");
+}
+
+@import "font-awesome";
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    font-family: sans-serif;
+    color: $text-color;
+}
+
+h1 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.1;
+    font-size: 4em;
+    margin: 5px;
+}
+
+.fa {
+    padding: 5px;
+}
+
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+    color: $text-color;
+    text-decoration: none;
+}
+
+.title {}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    height: 100vh;
+    background: $main-background;
+    text-align: center;
+    width: 100vw;
+    min-width: 100%;
+}
+
+header,
+footer {
+    height: 6%;
+    flex: none;
+    background: $off-background;
+    color: $text-off-color;
+}
+
+header {
+    height: 10%;
+}
+
+footer {
+    a,
+    a:hover,
+    a:visited,
+    a:link,
+    a:active {
+        color: $text-off-color;
+    }
+}
+
+.copyright {
+    margin-top: .2em;
+    font-size: 1.3em;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+main {
+    margin: 1em;
+    display: flex;
+    flex: 1 0;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 1.5em;
+    
+    @if $debug {
+         border-radius: 5px;
+         background: $debug-color;
+    }
+}
+
+nav {
+    order: -1;
+}
+
+nav,
+aside {
+    display: flex;
+    flex: 0 0 20vw;
+    margin: 1em;
+    
+    @if $debug {
+         border-radius: 5px;
+        background: $debug-color;
+    }
+}
+
+.content {
+    margin-top: 5%;    
+}
+
+.info span {
+    display: none;
+}
+
+@each $link in $link-list{
+    #{$link}:hover {
+        color: $hover-color;
+    }
+    #{$link}:hover ~ .info #{$link}-info {
+        color: $hover-color;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        flex: 1;
+    }
+    main {
+        flex: 1;
+    }
+    nav,
+    aside {
+        flex: 0 0 5em;
+    }
+}
+
+@media (min-height: 550px) {
+    .copyright {
+        margin-top: 1em;
+    }
+}
