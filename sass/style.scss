@@ -4,11 +4,56 @@ $text-color: #eefff4;
 $text-off-color: #30332e;
 
 $hover-color: #ffffff;
-$link-list: "#linkedin" "#github" "#bitbucket" "#blog" "#contact";
+$link-list: "#linkedin" "#github" "#px" "#blog" "#contact";
 
 $debug: false;
 @if $debug{
     $debug-color : #3aa830;
+}
+
+@mixin flex-display() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+ 
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex:  $values;
+    -webkit-flex:  $values;
+    -ms-flex:  $values;
+    flex:  $values;
+}
+ 
+@mixin flex-order($val) {
+    -webkit-box-ordinal-group: $val;  
+    -moz-box-ordinal-group: $val;     
+    -ms-flex-order: $val;     
+    -webkit-order: $val;  
+    order: $val;
+}
+
+@mixin flex-direction($val) {
+    -webkit-flex-direction: $val;
+    -moz-flex-direction: $val;
+    -ms-flex-direction: $val;
+    flex-direction: $val;
+}
+
+@mixin flex-justify-content($val) {
+    -webkit-justify-content: $val;
+    -moz-justify-content: $val;
+    -ms-justify-content: $val;
+    justify-content: $val;
+}
+
+@mixin flex-align-items($val) {
+    -webkit-align-items: $val;
+    -moz-align-items: $val;
+    -ms-align-items: $val;
+    align-items: $val;
 }
 
 @font-face {
@@ -50,26 +95,25 @@ a:active {
     text-decoration: none;
 }
 
-.title {}
 
 body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
     min-height: 100%;
     height: 100vh;
     background: $main-background;
     text-align: center;
     width: 100vw;
     min-width: 100%;
+    @include flex-display();
+    @include flex-direction(column);
 }
 
 header,
 footer {
     height: 6%;
-    flex: none;
     background: $off-background;
     color: $text-off-color;
+    @include flex(none);
 }
 
 header {
@@ -77,6 +121,9 @@ header {
 }
 
 footer {
+    @include flex-align-items(flex-end);
+    @include flex-justify-content(flex-end);
+
     a,
     a:hover,
     a:visited,
@@ -87,21 +134,21 @@ footer {
 }
 
 .copyright {
-    margin-top: .2em;
+    margin-top: .5%;
     font-size: 1.3em;
 }
 
 .container {
-    display: flex;
-    flex: 1;
+    @include flex-display();
+    @include flex(1);
 }
 
 main {
     margin: 1em;
-    display: flex;
-    flex: 1 0;
-    align-items: flex-start;
-    justify-content: center;
+    @include flex-display();
+    @include flex(1 0);
+    @include flex-align-items(flex-start);
+    @include flex-justify-content(center);
     font-size: 1.5em;
     
     @if $debug {
@@ -110,24 +157,24 @@ main {
     }
 }
 
-nav {
-    order: -1;
-}
-
 nav,
 aside {
-    display: flex;
-    flex: 0 0 20vw;
+    @include flex-display();
+    @include flex(0 0 20vw);
     margin: 1em;
     
     @if $debug {
-         border-radius: 5px;
+        border-radius: 5px;
         background: $debug-color;
     }
 }
 
 .content {
-    margin-top: 5%;    
+    margin-top: 5%;
+    
+    img {
+        max-width: 100%;
+    }
 }
 
 .info span {
@@ -139,27 +186,26 @@ aside {
         color: $hover-color;
     }
     #{$link}:hover ~ .info #{$link}-info {
-        color: $hover-color;
         display: block;
     }
 }
 
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        flex: 1;
+        @include flex-direction(column);
+        @include flex(1);
     }
     main {
-        flex: 1;
+        @include flex(1);
     }
     nav,
     aside {
-        flex: 0 0 5em;
+        @include flex(0 0 5em);
     }
 }
 
 @media (min-height: 550px) {
     .copyright {
-        margin-top: 1em;
+        margin-top: 1.5%;
     }
 }
