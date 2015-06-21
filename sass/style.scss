@@ -4,11 +4,36 @@ $text-color: #eefff4;
 $text-off-color: #30332e;
 
 $hover-color: #ffffff;
-$link-list: "#linkedin" "#github" "#bitbucket" "#blog" "#contact";
+$link-list: "#linkedin" "#github" "#px" "#blog" "#contact";
 
 $debug: false;
 @if $debug{
     $debug-color : #3aa830;
+}
+
+@mixin display-flex {
+    display: -webkit-box;           /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;              /* OLD - Firefox 19- (doesn't work very well) */
+    display: -ms-flexbox;           /* TWEENER - IE 10 */
+    display: -webkit-flex;          /* NEW - Chrome */
+    display: flex;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin order-flex($n) {
+    -webkit-box-ordinal-group: $n;   /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-ordinal-group: $n;      /* OLD - Firefox 19- */
+    -ms-flex-order: $n;              /* TWEENER - IE 10 */
+    -webkit-order: $n;               /* NEW - Chrome */
+    order: $n;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */          
+}
+
+@mixin flex($n, $width) {
+    -webkit-box-flex: $n;           /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: $n;              /* OLD - Firefox 19- */
+    width: #{$width}%;               /* For old syntax, otherwise collapses. */
+    -webkit-flex: $n;               /* Chrome */
+    -ms-flex: $n;                   /* IE 10 */
+    flex: $n;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
 @font-face {
@@ -77,6 +102,10 @@ header {
 }
 
 footer {
+    
+    align-items: flex-end;
+    justify-content: flex-end;
+
     a,
     a:hover,
     a:visited,
@@ -87,8 +116,10 @@ footer {
 }
 
 .copyright {
-    margin-top: .2em;
+
+    margin-top: .5%;
     font-size: 1.3em;
+
 }
 
 .container {
@@ -110,10 +141,6 @@ main {
     }
 }
 
-nav {
-    order: -1;
-}
-
 nav,
 aside {
     display: flex;
@@ -121,17 +148,26 @@ aside {
     margin: 1em;
     
     @if $debug {
-         border-radius: 5px;
+        border-radius: 5px;
         background: $debug-color;
     }
 }
 
 .content {
-    margin-top: 5%;    
+    margin-top: 5%;
+    
+    img {
+        max-width: 100%;
+    }
 }
 
 .info span {
     display: none;
+}
+
+.fa-500px {
+    font-family: sans-serif;
+    content: "5∞";
 }
 
 @each $link in $link-list{
@@ -139,7 +175,6 @@ aside {
         color: $hover-color;
     }
     #{$link}:hover ~ .info #{$link}-info {
-        color: $hover-color;
         display: block;
     }
 }
@@ -160,6 +195,6 @@ aside {
 
 @media (min-height: 550px) {
     .copyright {
-        margin-top: 1em;
+        margin-top: 1.5%;
     }
 }
