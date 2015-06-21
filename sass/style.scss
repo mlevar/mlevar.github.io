@@ -11,29 +11,49 @@ $debug: false;
     $debug-color : #3aa830;
 }
 
-@mixin display-flex {
-    display: -webkit-box;           /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;              /* OLD - Firefox 19- (doesn't work very well) */
-    display: -ms-flexbox;           /* TWEENER - IE 10 */
-    display: -webkit-flex;          /* NEW - Chrome */
-    display: flex;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+@mixin flex-display() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+ 
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex:  $values;
+    -webkit-flex:  $values;
+    -ms-flex:  $values;
+    flex:  $values;
+}
+ 
+@mixin flex-order($val) {
+    -webkit-box-ordinal-group: $val;  
+    -moz-box-ordinal-group: $val;     
+    -ms-flex-order: $val;     
+    -webkit-order: $val;  
+    order: $val;
 }
 
-@mixin order-flex($n) {
-    -webkit-box-ordinal-group: $n;   /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-ordinal-group: $n;      /* OLD - Firefox 19- */
-    -ms-flex-order: $n;              /* TWEENER - IE 10 */
-    -webkit-order: $n;               /* NEW - Chrome */
-    order: $n;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */          
+@mixin flex-direction($val) {
+    -webkit-flex-direction: $val;
+    -moz-flex-direction: $val;
+    -ms-flex-direction: $val;
+    flex-direction: $val;
 }
 
-@mixin flex($n, $width) {
-    -webkit-box-flex: $n;           /* OLD - iOS 6-, Safari 3.1-6 */
-    -moz-box-flex: $n;              /* OLD - Firefox 19- */
-    width: #{$width}%;               /* For old syntax, otherwise collapses. */
-    -webkit-flex: $n;               /* Chrome */
-    -ms-flex: $n;                   /* IE 10 */
-    flex: $n;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
+@mixin flex-justify-content($val) {
+    -webkit-justify-content: $val;
+    -moz-justify-content: $val;
+    -ms-justify-content: $val;
+    justify-content: $val;
+}
+
+@mixin flex-align-items($val) {
+    -webkit-align-items: $val;
+    -moz-align-items: $val;
+    -ms-align-items: $val;
+    align-items: $val;
 }
 
 @font-face {
@@ -75,26 +95,25 @@ a:active {
     text-decoration: none;
 }
 
-.title {}
 
 body {
     margin: 0;
-    display: flex;
-    flex-direction: column;
     min-height: 100%;
     height: 100vh;
     background: $main-background;
     text-align: center;
     width: 100vw;
     min-width: 100%;
+    @include flex-display();
+    @include flex-direction(column);
 }
 
 header,
 footer {
     height: 6%;
-    flex: none;
     background: $off-background;
     color: $text-off-color;
+    @include flex(none);
 }
 
 header {
@@ -102,9 +121,8 @@ header {
 }
 
 footer {
-    
-    align-items: flex-end;
-    justify-content: flex-end;
+    @include flex-align-items(flex-end);
+    @include flex-justify-content(flex-end);
 
     a,
     a:hover,
@@ -116,23 +134,21 @@ footer {
 }
 
 .copyright {
-
     margin-top: .5%;
     font-size: 1.3em;
-
 }
 
 .container {
-    display: flex;
-    flex: 1;
+    @include flex-display();
+    @include flex(1);
 }
 
 main {
     margin: 1em;
-    display: flex;
-    flex: 1 0;
-    align-items: flex-start;
-    justify-content: center;
+    @include flex-display();
+    @include flex(1 0);
+    @include flex-align-items(flex-start);
+    @include flex-justify-content(center);
     font-size: 1.5em;
     
     @if $debug {
@@ -143,8 +159,8 @@ main {
 
 nav,
 aside {
-    display: flex;
-    flex: 0 0 20vw;
+    @include flex-display();
+    @include flex(0 0 20vw);
     margin: 1em;
     
     @if $debug {
@@ -165,11 +181,6 @@ aside {
     display: none;
 }
 
-.fa-500px {
-    font-family: sans-serif;
-    content: "5∞";
-}
-
 @each $link in $link-list{
     #{$link}:hover {
         color: $hover-color;
@@ -181,15 +192,15 @@ aside {
 
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        flex: 1;
+        @include flex-direction(column);
+        @include flex(1);
     }
     main {
-        flex: 1;
+        @include flex(1);
     }
     nav,
     aside {
-        flex: 0 0 5em;
+        @include flex(0 0 5em);
     }
 }
 
