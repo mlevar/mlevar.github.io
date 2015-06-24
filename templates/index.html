@@ -1,33 +1,6 @@
-<!DOCTYPE html>
+{% extends '_layout.html' %}
 
-<html>
-
-<head>
-    
-    <meta charset='utf-8'>
-    <meta name="description" content="mlevar.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
-   
-    <title>mlevar.com</title>
-    
-</head>
-
-<body>
-    
-<header>
-    
-</header>
-
-<div class="container">
-
-    <nav>
-        
-    </nav>
-
-    <main>
-        
+{% block main %}
     <div class="content">
         <h1 class="title">Miran Levar</h1>
 
@@ -47,7 +20,7 @@
             <i class="fa fa-wordpress fa-3x"></i>
         </a>
 
-        <a href="mailto:info@mlevar.com"  id="contact">
+        <a href="mailto:{{ contactEmail }}"  id="contact">
             <i class="fa fa-envelope fa-3x"></i>
         </a>
 
@@ -56,26 +29,7 @@
             <span id="github-info"> Github profile with various programming projects </span>
             <span id="px-info"> Check out my photos on 500px.com </span>
             <span id="blog-info"> slovenianabroad.com is a blog I started while in Japan </span>
-            <span id="contact-info"> Contact me through info@mlevar.com </span>
+            <span id="contact-info"> Contact me through {{ contactEmail }} </span>
         </div>
     </div>
-
-    </main>
-
-    <aside>
-        
-    </aside>
-
-</div>
-
-<footer>
-    
-    <div class="copyright">
-        Copyright © 2015 <a href="mailto:info@mlevar.com">mlevar.com</a>
-    </div>
-    
-</footer>
-
-</body>
-    
-</html>
+{% endblock %}

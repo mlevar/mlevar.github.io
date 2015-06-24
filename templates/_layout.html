@@ -10,43 +10,38 @@
     
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
    
-    <title>mlevar.com - 404</title>
+    <title>{% block title %}mlevar.com{% endblock %}</title>
     
 </head>
 
 <body>
     
 <header>
-    
+    {% block header %}{% endblock %}
 </header>
 
 <div class="container">
 
     <nav>
-        
+        {% block nav %}{% endblock %}
     </nav>
 
     <main>
-        
-    <div>
-        <h1 class="title">404</h1>
-        <a href="http://mlevar.com/" >Page not found, click here to return.</a>
-    </div>
-
+        {% block main %}{% endblock %}
     </main>
 
     <aside>
-        
+        {% block aside %}{% endblock %}
     </aside>
 
 </div>
 
 <footer>
-    
+    {% block footer %}
     <div class="copyright">
-        Copyright © 2015 <a href="mailto:info@mlevar.com">mlevar.com</a>
+        Copyright © {{ now|date('Y') }} <a href="mailto:{{ contactEmail }}">mlevar.com</a>
     </div>
-    
+    {% endblock %}
 </footer>
 
 </body>
